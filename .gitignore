@@ -2,4 +2,7 @@
 .depend
 bin
 obj
+.o
+.exe
+
 
