@@ -1,5 +1,5 @@
 #include<iostream>
-
+#include<cmath>
 using namespace std;
 class Liczba{
 private:
@@ -11,7 +11,31 @@ public:
 };
 void Liczba::Dodaj(int b){liczba+=b;}
 
+class Wektor3d{
+private:
+    float x;
+    float y;
+    float z;
+public:
+    Wektor3d():x(1), y(1), z(1){}
+    Wektor3d(float x, float y, float z): x(x), y(y), z(z){}
+    Wektor3d(float x):x(x), y(x), z(x){}
+    void wypisz(){
+        cout << "[" << x << ", " << y << ", " << z << "]" << endl;
+    }
+    Wektor3d operator+(Wektor3d& v){
+        return Wektor3d(x+v.x, y + v.y, z + v.z);
+    }
+    bool wersor(){
+        return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
+    }
+};
+
 int main(){
+    Wektor3d w1,w2;
+    Wektor3d sum = w1 + w2;
+    sum.wypisz();
+
     Liczba l1(5);
     Liczba *l2 = new Liczba(10);
     cout << "l1 liczba = " << l1.GetLiczba() << endl;
