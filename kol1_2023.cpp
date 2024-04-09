@@ -26,6 +26,9 @@ public:
     Wektor3d operator+(Wektor3d& v){
         return Wektor3d(x+v.x, y + v.y, z + v.z);
     }
+    Wektor3d operator-(Wektor3d& v){
+        return Wektor3d(x-v.x, y-v.y, z - v.z);
+    }
     bool wersor(){
         return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
     }
@@ -34,6 +37,8 @@ public:
 int main(){
     Wektor3d w1,w2;
     Wektor3d sum = w1 + w2;
+    Wektor3d diff = w1 - w2;
+    diff.wypisz();
     sum.wypisz();
 
     Liczba l1(5);
