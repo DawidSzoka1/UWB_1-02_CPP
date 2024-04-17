@@ -12,6 +12,7 @@ public:
         cout << "ta figura to " << typ << " o obwodzie " << obwod << ", polu " << pole << endl;
     }
     virtual string nazwaFigury() = 0;
+    virtual double policzPole() = 0;
 
 };
 class Kolo: public Figura{
@@ -85,6 +86,15 @@ int main(){
     ko1.wypisz();
 
     Figura *scena[4];
+    scena[0] = new Kwadrat(2);
+    scena[1] = new Kwadrat(4);
+    scena[2] = new Kolo(2);
+    scena[3] = new Kolo(4);
+
+    for(int i = 0; i < 4; i++){
+        cout << "Figura " << scena[i]->nazwaFigury() << " pole: " << scena[i]->policzPole() << endl;
+        delete scena[i];
+    }
 
     return 0;
 }
