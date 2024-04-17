@@ -11,6 +11,7 @@ public:
     void wypisz(){
         cout << "ta figura to " << typ << " o obwodzie " << obwod << ", polu " << pole << endl;
     }
+    virtual string nazwaFigury() = 0;
 
 };
 class Kolo: public Figura{
@@ -28,6 +29,9 @@ public:
         pole = policzPole();
         obwod = policzObwod();
     }
+    string nazwaFigury(){
+        return typ;
+    }
 };
 
 class Kwadrat: public Figura{
@@ -44,6 +48,9 @@ public:
         typ = "kwadrat";
         pole = policzPole();
         obwod = policzObwod();
+    }
+    string nazwaFigury(){
+        return typ;
     }
 };
 
@@ -63,6 +70,9 @@ public:
         pole = policzPole();
         obwod = policzObwod();
     }
+    string nazwaFigury(){
+        return typ;
+    }
 };
 
 int main(){
@@ -74,6 +84,7 @@ int main(){
     k1.wypisz();
     ko1.wypisz();
 
+    Figura *scena[4];
 
     return 0;
 }
