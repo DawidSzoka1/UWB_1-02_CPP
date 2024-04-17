@@ -56,7 +56,39 @@ ostream& operator<<(ostream& o,LiczbyZespolone &li){
     return o;
 }
 
+class PustaKlasa{
+private:
+    static int ilosc;
+public:
+    PustaKlasa(){
+        ilosc++;
+    }
+    ~PustaKlasa(){
+        ilosc--;
+    }
+    static int getIlosc(){
+        return ilosc;
+    }
+};
+
+int PustaKlasa:: ilosc = 0;
+
 int main(){
+
+    PustaKlasa p1;
+    cout << "Ilosc: " << p1.getIlosc() << endl;
+    PustaKlasa p2;
+    cout << "Ilosc: " << p1.getIlosc() << endl;
+    PustaKlasa *p3 = new PustaKlasa();
+    cout << "Ilosc: " << p1.getIlosc() << endl;
+    PustaKlasa *p4 = new PustaKlasa();
+    cout << "Ilosc: " << p1.getIlosc() << endl;
+    delete p3;
+    cout << "Ilosc: " << p1.getIlosc() << endl;
+    delete p4;
+    cout << "Ilosc: " << p1.getIlosc() << endl;
+
+
     LiczbyZespolone z1(2,3), z2(2,3),z3; z3=(z1/z2)+z2;
     cout << z3;
     z3=z1+4;
@@ -70,5 +102,7 @@ int main(){
     cout << z3;
     z3 = 2 + z1;
     cout << z3;
+
+
     return 0;
 }
