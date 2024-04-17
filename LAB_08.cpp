@@ -34,9 +34,18 @@ public:
     LiczbyZespolone operator!(){
         return LiczbyZespolone(re, -im);
     }
+    friend LiczbyZespolone operator*(float skalar, LiczbyZespolone &li);
+    friend LiczbyZespolone operator+(float skalar, LiczbyZespolone &li);
 
 
 };
+
+LiczbyZespolone operator*(float skalar, LiczbyZespolone &li){
+    return LiczbyZespolone(li.getRe() * skalar, li.getIm() * skalar);
+}
+LiczbyZespolone operator+(float skalar, LiczbyZespolone &li){
+    return LiczbyZespolone(li.getRe() + skalar, li.getIm() + skalar);
+}
 
 ostream& operator<<(ostream& o,LiczbyZespolone &li){
     if(li.getIm() < 0)
@@ -57,6 +66,9 @@ int main(){
     else
         z3=!z1;
     cout << z3;
-
+    z3 = 2.5 * z1;
+    cout << z3;
+    z3 = 2 + z1;
+    cout << z3;
     return 0;
 }
