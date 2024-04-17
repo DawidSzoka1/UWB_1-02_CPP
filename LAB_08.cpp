@@ -13,8 +13,10 @@ public:
     float getIm(){
         return im;
     }
-    LiczbyZespolone(float re, float im): re(re), im(im){}
-    LiczbyZespolone(){}
+    LiczbyZespolone(float re, float im): re(re), im(im){ count_amount++;}
+    LiczbyZespolone(){
+        count_amount ++;
+    }
     LiczbyZespolone operator+(LiczbyZespolone &li){
         return LiczbyZespolone(re + li.getRe(), im + li.getIm());
     }
@@ -37,8 +39,24 @@ public:
     friend LiczbyZespolone operator*(float skalar, LiczbyZespolone &li);
     friend LiczbyZespolone operator+(float skalar, LiczbyZespolone &li);
 
+    static void Amount();
+    static int count_amount;
 
 };
+int LiczbyZespolone:: count_amount = 0;
+void LiczbyZespolone:: Amount(){
+    cout << "Obecnie mamy " ;
+    if(count_amount >= 3){
+        cout << "duzo ";
+    }
+    else if(count_amount >= 1){
+        cout << "nieduzo ";
+    }
+    else
+        cout << "brak obiektow";
+    cout << "obiekotow" << endl;
+}
+
 
 LiczbyZespolone operator*(float skalar, LiczbyZespolone &li){
     return LiczbyZespolone(li.getRe() * skalar, li.getIm() * skalar);
@@ -102,7 +120,7 @@ int main(){
     cout << z3;
     z3 = 2 + z1;
     cout << z3;
-
+    LiczbyZespolone::Amount();
 
     return 0;
 }
