@@ -66,6 +66,14 @@ public:
 };
 
 int main(){
+    Prostokat p1(5, 7);
+    Kwadrat k1(10);
+    Kolo ko1(9);
+
+    p1.wypisz();
+    k1.wypisz();
+    ko1.wypisz();
+
 
     return 0;
 }
