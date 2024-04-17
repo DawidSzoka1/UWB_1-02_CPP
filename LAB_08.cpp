@@ -27,17 +27,36 @@ public:
     bool operator==(LiczbyZespolone &li){
         return re == li.getRe() && im == li.getIm();
     }
-    LiczbyZespolone operator+=(LiczbyZespolone &li){
-        return LiczbyZespolone(re + li.getRe(), im + li.getIm());
+    void operator+=(LiczbyZespolone &li){
+        re += li.getRe();
+        im += li.getIm();
     }
+    LiczbyZespolone operator!(){
+        return LiczbyZespolone(re, -im);
+    }
+
 
 };
 
+ostream& operator<<(ostream& o,LiczbyZespolone &li){
+    if(li.getIm() < 0)
+        o<< li.getRe() << li.getIm() << "j" << endl;
+    else
+        o<< li.getRe() << " + " << li.getIm() << "j" << endl;
+
+    return o;
+}
+
 int main(){
-    LiczbyZespolone z1(2,3), z2(1,4),z3; z3=(z1/z2)+z2;
+    LiczbyZespolone z1(2,3), z2(2,3),z3; z3=(z1/z2)+z2;
+    cout << z3;
     z3=z1+4;
+    cout << z3;
     if(z1==z2)
         z3+=z1;
+    else
+        z3=!z1;
+    cout << z3;
 
     return 0;
 }
