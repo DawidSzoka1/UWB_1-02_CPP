@@ -87,7 +87,25 @@ public:
 
         }
         plik.close();
+        cout << "Dodano porpawnie" << endl;
         return 1;
+    }
+    bool saveToFile(string file_name){
+        fstream plik;
+        plik.open(file_name, ios::out);
+        if(!plik.good()){
+                cout << "Cos poszlo nie tak";
+                return 0;
+        }
+        for(int i =0; i< licznik; i++){
+
+            if(produkty[i].getAmount() < 5){
+                plik << produkty[i].getId() << " " << produkty[i].getName();
+            }
+
+        }
+        plik.close();
+
     }
 
 
