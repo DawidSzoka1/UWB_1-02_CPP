@@ -1,6 +1,6 @@
 #include<iostream>
 #include<string>
-#include <array>
+#include<fstream>
 using namespace std;
 
 class Produkt{
@@ -67,6 +67,28 @@ public:
             }
         }
     }
+    bool getFromFIle(string file_name){
+        fstream plik;
+        plik.open(file_name, ios::in);
+        if(!plik.good()){
+                cout << "Cos poszlo nie tak";
+                return 0;
+        }
+        string name, price, amount ,id;
+
+
+        while(!plik.eof()){
+            getline(plik, name, ' ');
+            getline(plik, price, ' ');
+            getline(plik, amount, ' ');
+            getline(plik, id);
+            Produkt p(name, stof(price), stoi(amount), stoi(id));
+            addProdukt(p);
+
+        }
+        plik.close();
+        return 1;
+    }
 
 
 
@@ -76,8 +98,8 @@ int main(){
     Automat a1(10);
     Produkt p1("test", 20.3, 10, 1);
     a1.addProdukt(p1);
-    a1.whatBuy(40);
 
-
+    a1.getFromFIle("produkty.txt");
+    a1.whatBuy(130);
     return 0;
 }
