@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include <array>
 using namespace std;
 
 class Produkt{
@@ -23,6 +24,12 @@ public:
     float getPrice(){
         return price;
     }
+    void add(int amount){
+        this->amount += amount;
+    }
+    void setId(int newid){
+        id = newid;
+    }
 };
 
 class Automat{
@@ -32,12 +39,25 @@ private:
 public:
     Automat(int ile){
         produkty = new Produkt[ile];
-        licznik += ile;
     }
-    void addProdukt(){
+    void addProdukt(Produkt p1){
+        int idTaken[licznik];
+
+        for(int i = 0; i < licznik; i++){
+                idTaken[i] = produkty[i].getId();
+        }
+
+        p1.setId(idTaken[licznik]+1);
+        produkty[licznik] = p1;
+        licznik+=1;
 
     }
     void buyProdukt(int id, int amount){
+        for(int i = 0; i< licznik; i++){
+            if(produkty[i].getId() == id){
+                produkty[i].add(amount);
+            }
+        }
     }
     void whatBuy(int amount){
         cout << "Mozesz kupic: " << endl;
@@ -49,9 +69,14 @@ public:
     }
 
 
+
 };
 
 int main(){
+    Automat a1(10);
+    Produkt p1("test", 20.3, 10, 1);
+    a1.addProdukt(p1);
+    a1.whatBuy(40);
 
 
     return 0;
