@@ -41,13 +41,12 @@ public:
         produkty = new Produkt[ile];
     }
     void addProdukt(Produkt p1){
-        int idTaken[licznik];
-
-        for(int i = 0; i < licznik; i++){
-                idTaken[i] = produkty[i].getId();
+        if(licznik > 0){
+             p1.setId(produkty[licznik-1].getId()+1);
+        }else{
+            p1.setId(1);
         }
 
-        p1.setId(idTaken[licznik]+1);
         produkty[licznik] = p1;
         licznik+=1;
 
@@ -100,7 +99,7 @@ public:
         for(int i =0; i< licznik; i++){
 
             if(produkty[i].getAmount() < 5){
-                plik << produkty[i].getId() << " " << produkty[i].getName();
+                plik << produkty[i].getId() << " " << produkty[i].getName()<<endl;;
             }
 
         }
@@ -119,5 +118,6 @@ int main(){
 
     a1.getFromFIle("produkty.txt");
     a1.whatBuy(130);
+    a1.saveToFile("zapisProduktow.txt");
     return 0;
 }
