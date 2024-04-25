@@ -114,7 +114,7 @@ public:
     }
 
     float buy(int numer_id, int amount, float cash){
-        if(licznik >= numer_id){
+        if(licznik <= numer_id){
             cout << "nie ma takiego produktu" << endl;
             return 0;
         }
@@ -122,16 +122,16 @@ public:
             cout << "nie da sie tak" << endl;
             return 0;
         }
-        if(amount > produkty[numer_id].getAmount()){
+        if(amount > produkty[numer_id-1].getAmount()){
             cout << "Nie mamy tyle produktow" << endl;
             return 0;
         }
-        if(cash < produkty[numer_id].getPrice()*amount){
+        if(cash < produkty[numer_id-1].getPrice()*amount){
             cout << "Masz za malo kasy" << endl;
             return 0;
         }
-        float reszta = produkty[numer_id].getPrice()*amount - cash;
-        produkty[numer_id].add(-amount);
+        float reszta = produkty[numer_id-1].getPrice()*amount - cash;
+        produkty[numer_id-1].add(-amount);
         cout << "Prosze odebrac reszta w wysokosci: " << reszta << endl;
         return 1;
 
@@ -148,7 +148,7 @@ int main(){
     a1.getFromFIle("produkty.txt");
     a1.whatBuy(130);
     a1.saveToFile("zapisProduktow.txt");
-
+    a1.buy(1, 5, 200);
     fstream plik;
     plik.open("stanAktualny.txt", ios::out);
     if(!plik.good()){
