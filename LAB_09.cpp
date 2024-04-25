@@ -116,20 +116,24 @@ public:
     float buy(int numer_id, int amount, float cash){
         if(licznik >= numer_id){
             cout << "nie ma takiego produktu" << endl;
-            return 1;
+            return 0;
         }
         if(amount <= 0 ){
             cout << "nie da sie tak" << endl;
-            return 1;
+            return 0;
         }
         if(amount > produkty[numer_id].getAmount()){
             cout << "Nie mamy tyle produktow" << endl;
-            return 1;
+            return 0;
         }
-        if(cash*amount < produkty[numer_id].getPrice()*amount){
+        if(cash < produkty[numer_id].getPrice()*amount){
             cout << "Masz za malo kasy" << endl;
-            return 1;
+            return 0;
         }
+        float reszta = produkty[numer_id].getPrice()*amount - cash;
+        produkty[numer_id].add(-amount);
+        cout << "Prosze odebrac reszta w wysokosci: " << reszta << endl;
+        return 1;
 
     }
 
