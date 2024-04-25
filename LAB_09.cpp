@@ -130,7 +130,7 @@ public:
             cout << "Masz za malo kasy" << endl;
             return 0;
         }
-        float reszta = produkty[numer_id-1].getPrice()*amount - cash;
+        float reszta = cash - produkty[numer_id-1].getPrice()*amount;
         produkty[numer_id-1].add(-amount);
         cout << "Prosze odebrac reszta w wysokosci: " << reszta << endl;
         return 1;
