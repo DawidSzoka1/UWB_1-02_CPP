@@ -106,6 +106,12 @@ public:
         plik.close();
 
     }
+    Produkt getProdukt(int index){
+        return produkty[index];
+    }
+    int getLicznik(){
+        return licznik;
+    }
 
 
 
@@ -119,5 +125,19 @@ int main(){
     a1.getFromFIle("produkty.txt");
     a1.whatBuy(130);
     a1.saveToFile("zapisProduktow.txt");
+
+    fstream plik;
+    plik.open("stanAktualny.txt", ios::out);
+    if(!plik.good()){
+        cout << "Nie uzyskano dostepu do pliku" << endl;
+        return 1;
+    }
+    for(int i = 0; i < a1.getLicznik(); i++){
+        plik << a1.getProdukt(i).getId()<< " " << a1.getProdukt(i).getName();
+        plik << " " << a1.getProdukt(i).getAmount() << endl;
+
+    }
+
+
     return 0;
 }
