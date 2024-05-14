@@ -41,7 +41,24 @@ public:
     int getWiek(){
         return wiek;
     }
-
+    void setImie(string nowe){
+        imie = nowe;
+    }
+    void setNazwisko(string nowe){
+        nazwisko = nowe;
+    }
+    void setPesel(double nowe){
+        PESEL = nowe;
+    }
+    void setNazwaOddzialu(string nowe){
+        nazwaOddzialu = nowe;
+    }
+    void setLiczbaDniPobytu(int nowe){
+        liczbaDniPobytu = nowe;
+    }
+    void setWiek(int nowe){
+        wiek = nowe;
+    }
     bool sprawdzCzyPowyzej(int liczba){
         return liczbaDniPobytu > liczba;
     }
