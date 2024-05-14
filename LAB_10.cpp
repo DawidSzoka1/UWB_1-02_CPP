@@ -23,6 +23,25 @@ public:
         liczbaDniPobytu = 0;
         this->wiek = wiek;
     }
+    string getImie(){
+        return imie;
+    }
+    string getNazwisko(){
+        return nazwisko;
+    }
+    double getPesel(){
+        return PESEL;
+    }
+    string getNazwaOddzialu(){
+        return nazwaOddzialu;
+    }
+    int getLiczbaDniPobytu(){
+        return liczbaDniPobytu;
+    }
+    int getWiek(){
+        return wiek;
+    }
+
     bool sprawdzCzyPowyzej(int liczba){
         return liczbaDniPobytu > liczba;
     }
