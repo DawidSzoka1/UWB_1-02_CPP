@@ -73,42 +73,84 @@ public:
         cout << "pesel: " << PESEL << " Nazwa oddzialu: " << nazwaOddzialu << endl;
         cout << "liczba dni pobytu: " << liczbaDniPobytu << " wiek:" << wiek << endl;
     }
+    string toString(){
+        return imie + " " + nazwisko + " " + to_string(PESEL) + " " + nazwaOddzialu + " " + to_string(liczbaDniPobytu) + " " + to_string(wiek);
+    }
+};
+
+class Szpital{
+private:
+    int maxPacjentow;
+    vector<Pacjent> listaPacjentow;
+public:
+    Szpital(int maxPacjentow, vector<Pacjent> lista){
+        this->maxPacjentow =maxPacjentow;
+        if(lista.size() <= maxPacjentow)
+            listaPacjentow = lista;
+    }
+    Szpital(){}
+    int getMax(){
+        return maxPacjentow;
+    }
+    vector <Pacjent> getVector(){
+        return listaPacjentow;
+    }
+    string wyswietlPacjentowZOddzialu(string nazwa){
+        for(Pacjent p: listaPacjentow){
+            if(p.getNazwaOddzialu() == nazwa){
+                cout << p.getImie() << " " << p.getNazwisko() << endl;
+            }
+        }
+    }
+    float zwrocSredniaDniPobytu(){
+        int sumDni = 0;
+        for(Pacjent p: listaPacjentow){
+            sumDni += p.getLiczbaDniPobytu();
+        }
+        return float(sumDni)/listaPacjentow.size();
+    }
+
 };
 
 
-void wyswietl(vector <int> vec1){
-    for(int i = 0; i<vec1.size(); i++){
-        cout << vec1.at(i) << endl;
-    }
-}
 
 int main(){
-    srand(time(NULL));
-    vector <int> lista;
+    vector <Pacjent> pacjenci;
+    for(int i = 0; i < 5; i++){
+        Pacjent pac("Imie", "Nazwisko", i, "oddzial", i);
+        pacjenci.push_back(pac);
+    }
+    vector <Pacjent>:: iterator it;
+    for(it = pacjenci.begin(); it != pacjenci.end(); it++){
+        cout << it->toString() << endl;
+    }
 
-    for(int i = 0; i<10; i++){
-        lista.push_back(rand() % 100 + 1);
-    }
-    wyswietl(lista);
-  //  lista.erase(lista.begin()+3);
-  //lista.erase(lista.begin());//usuwa pierwszy jak damy + 4 to usunie 5 element
-   // lista.erase(lista.end()); //ostatni
-   // lista.erase(lista.begin(), lista.begin()+2);//usuwa przedzial
-   // lista.insert(lista.begin()+3, 550);//wstawia wartosc
-   // wyswietl(lista);
-    cout << "Nowy sposob" << endl;
-    for(int x: lista){
-        cout << x << endl;
-    }
-    cout<<"ITERATORE" << endl;
-    vector <int>:: iterator it;
-    for(it = lista.begin(); it != lista.end(); it++){
-        if(*it % 2 == 0){
-                cout << *it << endl;
-        }
-    }
-    // #include<alponthnw>
-    // sortowanie sort(vec.begin(), vec.end());
+//    srand(time(NULL));
+//    vector <int> lista;
+//
+//    for(int i = 0; i<10; i++){
+//        lista.push_back(rand() % 100 + 1);
+//    }
+//    wyswietl(lista);
+//  //  lista.erase(lista.begin()+3);
+//  //lista.erase(lista.begin());//usuwa pierwszy jak damy + 4 to usunie 5 element
+//   // lista.erase(lista.end()); //ostatni
+//   // lista.erase(lista.begin(), lista.begin()+2);//usuwa przedzial
+//   // lista.insert(lista.begin()+3, 550);//wstawia wartosc
+//   // wyswietl(lista);
+//    cout << "Nowy sposob" << endl;
+//    for(int x: lista){
+//        cout << x << endl;
+//    }
+//    cout<<"ITERATORE" << endl;
+//    vector <int>:: iterator it;
+//    for(it = lista.begin(); it != lista.end(); it++){
+//        if(*it % 2 == 0){
+//                cout << *it << endl;
+//        }
+//    }
+//    // #include<alponthnw>
+//    // sortowanie sort(vec.begin(), vec.end());
 
     return 0;
 }
