@@ -109,7 +109,31 @@ public:
         }
         return float(sumDni)/listaPacjentow.size();
     }
-
+    void dodajPacjenta(Pacjent p){
+        if(listaPacjentow.size() + 1 > maxPacjentow){
+            cout << "Nie mamy miejsca" << endl;
+        }else{
+            listaPacjentow.push_back(p);
+        }
+    }
+    int zwrocNajPobyt(){
+        int maxDni = 0;
+        for(Pacjent p: listaPacjentow){
+            if(p.getLiczbaDniPobytu() > maxDni){
+                maxDni = p.getLiczbaDniPobytu();
+            }
+        }
+        return maxDni;
+    }
+    int zwrocIlePowyzejWieku(int check){
+        int count_ = 0;
+        for(Pacjent p: listaPacjentow){
+            if(p.getWiek() > check){
+                count_++;
+            }
+        }
+        return count_;
+    }
 };
 
 
