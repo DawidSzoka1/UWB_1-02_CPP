@@ -95,7 +95,7 @@ public:
     vector <Pacjent> getVector(){
         return listaPacjentow;
     }
-    string wyswietlPacjentowZOddzialu(string nazwa){
+    void wyswietlPacjentowZOddzialu(string nazwa){
         for(Pacjent p: listaPacjentow){
             if(p.getNazwaOddzialu() == nazwa){
                 cout << p.getImie() << " " << p.getNazwisko() << endl;
@@ -148,7 +148,12 @@ int main(){
     for(it = pacjenci.begin(); it != pacjenci.end(); it++){
         cout << it->toString() << endl;
     }
-
+    Szpital szpital1(20, pacjenci);
+    cout << szpital1.zwrocSredniaDniPobytu() << endl;
+    szpital1.wyswietlPacjentowZOddzialu("oddzial");
+    Pacjent p2("nowy", "test", 233, "nowy", 20);
+    szpital1.dodajPacjenta(p2);
+    szpital1.wyswietlPacjentowZOddzialu("nowy");
 //    srand(time(NULL));
 //    vector <int> lista;
 //
