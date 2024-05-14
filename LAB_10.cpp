@@ -1,9 +1,44 @@
 #include<iostream>
 #include<vector>
 #include<time.h>
+#include<string>
 
 
 using namespace std;
+
+class Pacjent{
+protected:
+    string imie;
+    string nazwisko;
+    double PESEL;
+    string nazwaOddzialu;
+    int liczbaDniPobytu;
+    int wiek;
+public:
+    Pacjent(string imie, string nazwisko, double pesel, string nazwaOddzialu, int wiek){
+        this->imie = imie;
+        this->nazwisko = nazwisko;
+        PESEL = pesel;
+        this->nazwaOddzialu = nazwaOddzialu;
+        liczbaDniPobytu = 0;
+        this->wiek = wiek;
+    }
+    bool sprawdzCzyPowyzej(int liczba){
+        return liczbaDniPobytu > liczba;
+    }
+    void dodajKolejnyDzien(){
+        liczbaDniPobytu++;
+    }
+    bool sprawdzOddzial(string nazwa){
+        return nazwaOddzialu == nazwa;
+    }
+    void wyswietl(){
+        cout << "Imie: " << imie << " Nazwisko: " << nazwisko << endl;
+        cout << "pesel: " << PESEL << " Nazwa oddzialu: " << nazwaOddzialu << endl;
+        cout << "liczba dni pobytu: " << liczbaDniPobytu << " wiek:" << wiek << endl;
+    }
+};
+
 
 void wyswietl(vector <int> vec1){
     for(int i = 0; i<vec1.size(); i++){
@@ -36,7 +71,7 @@ int main(){
                 cout << *it << endl;
         }
     }
-    // #include<alponthn>
+    // #include<alponthnw>
     // sortowanie sort(vec.begin(), vec.end());
 
     return 0;
