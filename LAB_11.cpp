@@ -24,44 +24,48 @@ bool porownaj(Miasto m1, Miasto m2){
 }
 
 class Liczba{
-protected:
+private:
     int liczba;
 public:
     Liczba(){}
     Liczba(int liczba): liczba(liczba){}
-    void wypisz(){
+    virtual void wypisz(){
         cout << liczba << endl;
+    }
+    void setLiczba(int liczba){
+        this->liczba = liczba;
     }
 };
 
 class Nazwa: public Liczba{
-protected:
+private:
     string nazwa;
 public:
-    void wypisz(){
+    virtual void wypisz(){
         Liczba::wypisz();
         cout << nazwa << endl;
     }
     Nazwa(){}
-    Nazwa(string nazwa, int liczba): nazwa(nazwa){
-        this->liczba=liczba;
+    Nazwa(string nazwa, int liczba):Liczba(liczba), nazwa(nazwa){
 
+    }
+    void setNazwa(string nazwa){
+        this->nazwa = nazwa;
     }
 };
 class Klasa: public Nazwa{
 public:
     double x;
     Klasa(){}
-    Klasa(double x, string nazwa, int liczba): x(x){
-        this->nazwa = nazwa;
-        this->liczba = liczba;
+    Klasa(double x, string nazwa, int liczba):Nazwa(nazwa, liczba), x(x){
+
     }
     void wypisz(){
         Nazwa::wypisz();
         cout << x << endl;
     }
-    void setNazwa(string nazwa){
-        this->nazwa = nazwa;
+    void setX(double x){
+        this->x = x;
     }
 };
 
