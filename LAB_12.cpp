@@ -2,6 +2,8 @@
 #include<vector>
 #include<string>
 #include<algorithm>
+#include<random>
+#include<cmath>
 
 using namespace std;
 int rok_teraz = 2024;
@@ -73,9 +75,32 @@ public:
 bool sort_by(Osoba o1, Osoba o2){
     return o1.getRok() <= o2.getRok();
 }
-
+class Punkt{
+private:
+    float x;
+    float y;
+public:
+    Punkt(){}
+    Punkt(float x, float y): x(x), y(y){}
+    float getX(){
+        return x;
+    }
+    float getY(){
+        return y;
+    }
+    float odleglosx_0_0(){
+        return sqrt(x*x + y*y);
+    }
+};
+ostream& operator<<(ostream& o, Punkt p1){
+    o << "(" << p1.getX() << "," << p1.getY() << ")";
+    return o;
+}
 void wiek_plus_1(Osoba o1){
     o1.setRok(o1.getRok() - 1);
+}
+bool sort_punkt(Punkt p1, Punkt p2){
+    return p1.odleglosx_0_0() < p2.odleglosx_0_0();
 }
 int main(){
     Adres ad1("cos", "cos2", 23);
@@ -114,8 +139,20 @@ int main(){
     cout << "najstarsza ma lat: " << oldest << endl;
     cout << "Najmlodsza ma na imie: " << name_yo << endl;
     sort(osoby.begin(),osoby.end(), sort_by);
-     for(it = osoby.begin(); it != osoby.end(); it++){
+    for(it = osoby.begin(); it != osoby.end(); it++){
         cout << it->toString() << endl;
+    }
+
+    vector<Punkt>punkty;
+    for(int i =0; i<20; i++){
+        punkty.push_back(Punkt(rand() % 11 - 5,rand() % 11 -5));
+    }
+    for(Punkt x: punkty){
+        cout << x << endl;
+    }
+    sort(punkty.begin(), punkty.end(), sort_punkt);
+    for(Punkt x: punkty){
+        cout << x << endl;
     }
     return 0;
 }
