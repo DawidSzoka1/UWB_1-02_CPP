@@ -25,6 +25,10 @@ public:
         return 2024 - rok_urodzenia;
     }
 };
+ostream& operator<<(ostream& o,Osoba* os){
+    o<< os->wiek() << endl;
+    return o;
+}
 
 class Pracownik: public Osoba{
 private:
@@ -61,6 +65,7 @@ int main(){
     cout << o1->wiek() << endl;
     cout << p1->wiek() << endl;
     cout<<o1;  //wyœwietli siê wiek
+    cout<<p1;
     vector <Osoba> osoby;
     for(int i = 0; i<5; i++){
         Osoba o("osoba"+to_string(i), 2000-i);
