@@ -4,14 +4,26 @@
 #include<algorithm>
 
 using namespace std;
+int rok_teraz = 2024;
+
+class Adres{
+private:
+    string miast;
+    string ulica;
+    int numer_domu;
+public:
+    Adres(){}
+    Adres(string miast, string ulica, int numer_domu): miast(miast), ulica(ulica), numer_domu(numer_domu){}
+};
+
 class Osoba{
 private:
-    static int rok_teraz;
     string imie;
     int rok_urodzenia;
+    Adres ad;
 public:
     Osoba(){}
-    Osoba(string imie, int rok_urodzenia): imie(imie), rok_urodzenia(rok_urodzenia){}
+    Osoba(string imie, int rok_urodzenia, Adres ad): imie(imie), rok_urodzenia(rok_urodzenia), ad(ad){}
     string toString(){
         return imie + " lat " + to_string(rok_urodzenia);
     }
@@ -21,10 +33,14 @@ public:
     string getImie(){
         return imie;
     }
+    void setRok(int rok){
+        rok_urodzenia = rok;
+    }
     int wiek(){
-        return 2024 - rok_urodzenia;
+        return rok_teraz - rok_urodzenia;
     }
 };
+
 ostream& operator<<(ostream& o,Osoba* os){
     o<< os->wiek() << endl;
     return o;
@@ -35,14 +51,14 @@ private:
     double zarobki;
 public:
     Pracownik(){}
-    Pracownik(string name, int rok, double zarobki):Osoba(name, rok), zarobki(zarobki){}
+    Pracownik(string name, int rok, Adres ad, double zarobki):Osoba(name, rok, ad), zarobki(zarobki){}
 };
 class Student: public Osoba{
 private:
     float srednia;
 public:
     Student(){}
-    Student(string name, int rok, float srednia): Osoba(name, rok), srednia(srednia){}
+    Student(string name, int rok, Adres ad, float srednia): Osoba(name, rok, ad), srednia(srednia){}
 };
 
 class Kierownik: public Pracownik{
@@ -50,25 +66,30 @@ private:
     string czego;
 public:
     Kierownik(){}
-    Kierownik(string name, int rok, double zarobki, string czego): Pracownik(name, rok, zarobki), czego(czego){}
+    Kierownik(string name, int rok, Adres ad, double zarobki, string czego): Pracownik(name, rok, ad, zarobki), czego(czego){}
 
 };
 
 bool sort_by(Osoba o1, Osoba o2){
     return o1.getRok() <= o2.getRok();
 }
+
+void wiek_plus_1(Osoba o1){
+    o1.setRok(o1.getRok() - 1);
+}
 int main(){
-    Osoba *o1 = new Osoba("Ala", 2000);
-    Osoba *o2 = new Pracownik("Ewa", 1995, 3456.67);
-    Osoba *o3 = new Student("Kuba", 2000, 3.89);
-    Pracownik *p1 = new Kierownik("Adam", 1990, 4128.78, "Informatyk");
+    Adres ad1("cos", "cos2", 23);
+    Osoba *o1 = new Osoba("Ala", 2000, ad1);
+    Osoba *o2 = new Pracownik("Ewa", 1995, ad1, 3456.67);
+    Osoba *o3 = new Student("Kuba", 2000, ad1, 3.89);
+    Pracownik *p1 = new Kierownik("Adam", 1990, ad1, 4128.78, "Informatyk");
     cout << o1->wiek() << endl;
     cout << p1->wiek() << endl;
     cout<<o1;  //wyœwietli siê wiek
     cout<<p1;
     vector <Osoba> osoby;
     for(int i = 0; i<5; i++){
-        Osoba o("osoba"+to_string(i), 2000-i);
+        Osoba o("osoba"+to_string(i), 2000-i, ad1);
         osoby.push_back(o);
     }
     cout << "Pierwszy sposoby " << endl;
