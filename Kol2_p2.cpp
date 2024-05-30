@@ -60,6 +60,30 @@ public:
     }
 };
 
+class Figura{
+protected:
+    string typ;
+    double pole;
+    double obwod;
+public:
+    void wypisz(){
+        cout << "typ: " << typ << " pole: " << pole << " obwod: " << obwod << endl;
+    }
+};
+
+class Kolo: public Figura{
+private:
+    double promien;
+public:
+    double policzPole(){
+        return promien * promien * 3.14;
+    }
+    double policzObwod(){
+        return 2 * 3.14 * promien;
+    }
+    Kolo(){}
+};
+
 
 int main(){
     Wynik wyniki[5];
